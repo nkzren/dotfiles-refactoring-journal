@@ -61,6 +61,14 @@ readicionar as features aos poucos.
 
 # Chezmoi
 
+> *DISCLAIMER*
+> Apesar de eu usar o chezmoi há bastante tempo e gostar dele, eu não o
+> recomendo para quem está começando a versionar os dotfiles agora. Por ele ser
+> uma ferramenta com várias funcionalidades, ele acaba adicionando camadas de
+> complexidade adicionais que podem ser confusas pra quem está começando.
+>
+> Para um setup mais simples, você pode usar o [stow](https://dev.to/luxcih/dotfiles-managing-with-gnu-stow-and-git-5100), por exemplo
+
 Estamos quase prontos pra começar a readicionar os dotfiles, e para
 gerenciá-los, o chezmoi foi o escolhido, então precisamos fazer o setup inicial.
 Seguindo o quickstart da própria
