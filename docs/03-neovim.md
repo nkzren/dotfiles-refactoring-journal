@@ -67,6 +67,17 @@ o.nu=true
 o.rnu=false
 ```
 
+Agora, configuramos o tamanho padrão dos tabs. Com esses 3 valores, os tabs
+ficam com 4 espaços e os espaços acompanham o mesmo comportamento. A explicação
+completa desses valores do `shiftwidth` e `softtabstop` e o que eles fazem está
+[aqui nessa pergunta do StackOverflow](https://stackoverflow.com/q/51995128)
+
+```lua
+o.tabstop=4
+o.shiftwidth=0
+o.softtabstop=-1
+```
+
 Por fim, como interagir com o clipboard não é muito prático com a configuração
 padrão, eu criei alguns atalhos pra isso. O primeiro argumento do
 [`nvim_set_keymap`](https://neovim.io/doc/user/api.html#nvim_set_keymap()) é o
@@ -83,9 +94,36 @@ map('n', '<leader>y', '"+y', opts)
 map('n', '<leader>Y', '"+yy', opts)
 map('v', '<leader>y', '"+y', opts)
 
+
 map('n', '<leader>p', '"+p', opts)
 map('n', '<leader>P', '"+P', opts)
 map('v', '<leader>p', '"+p', opts)
 ```
 
+Eu poderia configurar o restante dos mappings agora, mas por enquanto podemos
+seguir somente com essas, já que algumas mappings dependem de plugins estarem
+instalados.
 
+## Filetypes
+
+### `filetype.lua`
+
+A detecção de tipo de arquivo do neovim geralmente funciona, mas em algumas
+situações específicas, queremos estender o comportamento para que ele reconheça
+mais casos (Um exemplo comum são arquivos de template, como `.env.sample` ou
+`some.conf.template`). Para isso, podemos adicionar um `filetype.lua` na nossa
+config.
+
+Tem algumas formas de configurar ele (filename, extension e pattern), que você
+pode ver em detalhes lendo a doc do neovim (`:help vim.filetype.add()`), mas no
+meu
+[dotfiles](https://github.com/nkzren/dotfiles/blob/main/dot_config/nvim/filetype.lua)
+tem alguns exemplos
+
+### `ftplugin`
+
+Às vezes queremos adicionar configurações específicas para certos tipos de
+arquivos. Pra isso, podemos adicionar arquivos na pasta `ftplugin`, seguindo o
+padrão `<filetype>.(vim|lua)`. Diferente do restante dos arquivos de config, eu
+prefiro utilizar `vimscript` pra esses caras, já que eu geralmente não modifico
+muita coisa além de algumas opts e é mais simples fazer isso com `vimscript`.
