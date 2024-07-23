@@ -127,3 +127,76 @@ arquivos. Pra isso, podemos adicionar arquivos na pasta `ftplugin`, seguindo o
 padrão `<filetype>.(vim|lua)`. Diferente do restante dos arquivos de config, eu
 prefiro utilizar `vimscript` pra esses caras, já que eu geralmente não modifico
 muita coisa além de algumas opts e é mais simples fazer isso com `vimscript`.
+
+## Plugin Manager
+
+Agora que temos algumas configs básicas feitas, podemos começar a estender o
+comportamento do Neovim. E para isso vamos utilizar um gerenciador de plugins.
+Apesar de ser possível instalar plugins manualmente, um gerenciador facilita
+nosso trabalho.
+
+A minha escolha aqui foi o [Lazy](https://github.com/folke/lazy.nvim), mas
+existem outros como o [vim-plug](https://github.com/junegunn/vim-plug) ou o
+[packer](https://github.com/wbthomason/packer.nvim).
+
+O setup do Lazy foi feito seguindo a [doc](https://lazy.folke.io/installation)
+no modo estruturado. Dessa forma, mantemos o mínimo possível no nosso `init.lua`
+e facilita a remoção/troca do Lazy (basta remover o `require('config.lazy')`).
+Caso você não ligue pra isso, o setup com um único arquivo é mais simples e
+direto.
+
+Com o Lazy instalado, podemos estruturar nossas configs da seguinte forma:
+
+```sh
+.
+├── init.lua
+└── lua
+    ├── config
+    │   ├── lazy.lua
+    │   └── mappings.lua
+    └── plugins
+        ├── some.lua
+        ├── plugins.lua
+        └── by-category.lua
+```
+
+A doc do Lazy tem alguns [exemplos](https://lazy.folke.io/spec/examples) de como
+adicionar e configurar novos plugins. Por padrão, ele vai importar todos os
+plugins retornados nos arquivos da pasta `plugins`, mas minha recomendação é
+inicialmente adicioná-los somente em um arquivo.
+
+Um dos problemas dos meus dotfiles anteriores era justamente nos plugins do
+Neovim: Era difícil de encontrar onde estava cada plugin porque os agrupamentos
+foram feitos de forma prematura. Deixar todos os plugins inicialmente em um
+único arquivo evita esse problema inicialmente quando não temos muitos plugins
+
+## Plugins
+
+Com o plugin manager instalado, podemos adicionar alguns plugins. Esta seção
+será separada em 3 subseções:
+
+1. Core: Plugins que eu acredito serem muito úteis mesmo para quem não quer
+   utilizar o Neovim como editor principal (:sad:). A maior parte dos plugins
+aqui são para facilitar edições e navegação por arquivos de texto (o propósito
+principal do Neovim, afinal de contas)
+
+2. Extra: Plugins para quem pretende utilizar o neovim como editor principal.
+   Aqui vão ter plugins para otimizar o fluxo de trabalho com código adicionando
+ferramentas como linting, formatação e autocomplete
+
+3. UI: Plugins pra incrementar a interface do neovim. Porque ter pontos de
+   estilo também é importante
+
+As listas não serão extensivas e em sua maior parte vão ter somente um
+comentário resumindo o propósito do plugin. Consulte a documentação de cada um
+para saber como configurá-los (Basta adicionar `github.com/` na frente do nome
+completo do plugin)
+
+## Core
+
+- "RRethy/vim-illuminate": Ilumina palavras repetidas. Bem útil para localizar
+variáveis
+- "tpope/vim-commentary": Adiciona atalhos para comentar/descomentar código
+- "tpope/vim-sleuth": Identifica automaticamente o padrão de tabs/espaços dos
+arquivos abertos e altera a config de acordo
+
